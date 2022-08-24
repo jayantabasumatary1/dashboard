@@ -1,0 +1,60 @@
+.container {
+    width: 100%;
+    padding: 4rem 0 0 0;
+}
+
+
+
+.input-container1 {
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 2rem;
+    width: 90%;
+    height: 3rem;
+    padding: 1.5rem;
+    border: none;
+    outline: none;
+    margin-bottom: 0.7rem;
+    font-size: large;
+    color: aliceblue;
+}
+
+.input-container1:focus {
+    display: inline-block;
+    box-shadow: 0 0 0 0.2rem #b9abe0;
+    backdrop-filter: blur(12rem);
+    border-radius: 2rem;
+}
+
+input::placeholder {
+    color: aliceblue;
+}
+
+.btn-container {
+    margin: 1rem 0 1rem 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-container .btn {
+
+    background: linear-gradient(to right, #14163c 0%, #03217b 79%);
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    width: 65%;
+    height: 3rem;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    color: #d6cfeb;
+}
+
+
+
+@media screen and(max-width: 640px) {
+    .container h1 {
+        font-size: 1rem;
+    }
+}
