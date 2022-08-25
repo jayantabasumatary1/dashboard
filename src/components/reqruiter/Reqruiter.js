@@ -1,6 +1,6 @@
 import React from 'react'
 import { Close as CloseIcon } from '@mui/icons-material';
-import { Box, Button, Dialog, DialogTitle, DialogContent, FilledInput, Grid, IconButton, DialogActions } from "@mui/material"
+import { Box, Button, Dialog, DialogTitle, DialogContent, FilledInput, Grid, IconButton, DialogActions, Typography } from "@mui/material"
 import { useState } from 'react';
 
 const Reqruiter = () => {
@@ -32,9 +32,17 @@ const Reqruiter = () => {
             <Box sx={{
                 bgcolor: "black",
                 color: 'white',
-                padding: '4rem',
-            }}>
-                <Button variant='outlined' onClick={handleClickOpen}>post a job </Button>
+                padding: '2rem',
+            }}><Grid container justifyContent="center">
+            <Grid item xs = {10}>
+                <Box sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                }}>
+                <Typography variant='h4'>List of Jobs </Typography>
+                <Button className='btn' variant='contained'   onClick={handleClickOpen}>post a job </Button></Box>
+                </Grid>
+                </Grid>
                 <Dialog open={open} onClose={handleClose} fullWidth>
                     <DialogTitle><Box sx={{
                         display: 'flex',
