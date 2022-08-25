@@ -1,5 +1,5 @@
 import React from 'react'
-import Reqruiter from '../components/components2/Reqruiter'
+import Reqruiter from '../components/reqruiter/Reqruiter'
 const ReqruiterLogin = () => {
     return (
         <div>

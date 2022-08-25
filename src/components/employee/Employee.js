@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Typography, } from "@mui/material"
 import { createTheme, } from '@mui/material/styles';
-import JobList from './JobList';
+import JobList from '../reqruiter/JobList';
 
 
 const theme = createTheme()
