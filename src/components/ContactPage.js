@@ -5,7 +5,8 @@ import Form from './Form'
 
 const ContactPage = () => {
     return (
-        <div><div className="hero2">
+        <div>
+            <div className="hero2">
             <div className="mask2">
                 <img className="into-img" src={image1} alt="profile" />
             </div>

@@ -2,12 +2,13 @@ import React from 'react'
 import { Box, Typography, } from "@mui/material"
 import { createTheme, } from '@mui/material/styles';
 import JobList from '../reqruiter/JobList';
+import dasboardwall from "./dasboardwall.jpg"
 
 
 const theme = createTheme()
 const Employee = () => {
     return (
-        <div>
+        <div className='emp-container'>
             <Box sx={{
                 bgcolor: "black",
                 color: 'white',
@@ -21,7 +22,7 @@ const Employee = () => {
                 <JobList />
 
             </box>
-        </div>
+            </div>
     )
 }
 
