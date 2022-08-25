@@ -41,7 +41,7 @@ const Reqruiter = () => {
                         alignItems: "center",
                         justifyContent: "space-between"
                     }}>
-                        Post Job
+                        Post a New Job
                         <IconButton>
                             <CloseIcon />
                         </IconButton>
@@ -89,9 +89,6 @@ const Reqruiter = () => {
 
                             </Grid> </Grid>
                     </DialogActions>
-
-
-
                 </Dialog>
             </Box >
 
