@@ -10,12 +10,10 @@ const HomePage = () => {
 
             </div>
             <div className="content">
-
                 <h1>Warm Welcome to Flexday</h1>
                 <div>
                     <Link to="/about" className="btn">
                         ABOUT
-
                     </Link>
                     <Link to="/contact" className="btn btn-light">
                         CONTACT

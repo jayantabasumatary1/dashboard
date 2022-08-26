@@ -53,7 +53,7 @@ const Header = () => {
                         justifyContent: "space-between"
                     }}>
                         Post a New Job
-                        <IconButton>
+                        <IconButton  onClick={()=>setOpen(false)} >
                             <CloseIcon />
                         </IconButton>
 
@@ -87,18 +87,15 @@ const Header = () => {
                             </Grid>
                         </form>
                     </DialogContent>
-                    <DialogActions>
-                        <Grid container spacing={2}>
-                            <Grid item xs={6}>
+                    <DialogActions  sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        padding: "1.5rem"
+                    }}>
                                 <Button variant='contained' onClick={() => setOpen(false)}>
                                     cancel</Button>
-
-                            </Grid>
-                            <Grid item xs={6}>
                                 <Button variant='contained'>
                                     submit</Button>
-
-                            </Grid> </Grid>
                     </DialogActions>
                 </Dialog>
                 </div>  
