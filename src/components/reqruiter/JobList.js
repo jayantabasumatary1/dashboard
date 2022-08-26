@@ -1,36 +1,54 @@
 import React from 'react'
-import { Box, Button, Grid, makeStyles, Typography, } from "@mui/material"
-
-
-const skills = ["MongoDB ,", "Express ,", "Angular ,", "NodeJS"];
-
+import { useEffect, useState } from 'react';
+import Box from "@mui/material/Box";
+import { Button, Grid, Typography } from '@mui/material';
 
 const JobList = () => {
+    const [emp, setEmp] = useState([]);
+
+    const fetchData = ()=>{
+        fetch("https://randomuser.me/api/?nat=us&results=9&page=1").then((response)=>{
+            return response.json();
+        }).then((data)=>
+        {
+            let userData = data.results
+            setEmp(userData)
+        });
+    }
+
+
+    useEffect(()=>
+    {
+        fetchData();
+    },[])
     return (
-        <div>
-            <Box sx={{
-                mt: 6,
-                ml: 8
-            }}>
-                <Grid container alignItems='center'>
-                    <Grid item xs>
-                        <Typography variant='subtitle1'>MEAN full Stack Developer</Typography>
-                    </Grid>
-                    <Grid item container xs>
-                        {
-                            skills.map((skill) => (
-                                <Grid key={skill} item>
-                                    {skill}
-                                </Grid>
-                            ))
-                        }
-                    </Grid>
-                    <Grid item xs>
-                        <Button variant='outlined'>Apply</Button>
-                    </Grid>
-                </Grid>
-            </Box>
-        </div>
+            <div>
+                <Box sx={{
+                    bgcolor: "primary.dark",
+                    '&:hover':{
+                        bgcolor:"primary.main",
+                        opacity: [0.9, 0.8, 0.7],
+                    },
+                    marginTop: "0.5rem",
+                    paddingLeft:"2rem",
+                    paddingRight: "2rem"
+                    
+                    
+                }}>
+                    <Grid container justifyContent="center">
+                    <Grid item xs={8}>
+                    <Box sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                }}>
+                    <Typography variant = "h6"> job name</Typography>
+                    <Button variant = "outlined">view</Button>
+                        </Box>
+                    </Grid></Grid>
+                </Box>
+                
+
+            </div>
     )
 }
 
