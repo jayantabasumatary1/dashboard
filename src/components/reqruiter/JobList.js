@@ -1,8 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import Box from "@mui/material/Box";
-import { Button, Grid, Typography } from '@mui/material';
-
+import {  Grid, Card, CardActionArea, CardContent, Typography, Button, CardActions, CardMedia } from '@mui/material';
+import { Box } from '@mui/system';
 const JobList = () => {
     const [emp, setEmp] = useState([]);
 
@@ -22,33 +21,69 @@ const JobList = () => {
         fetchData();
     },[])
     return (
-            <div>
+        <div>
+            {
                 <Box sx={{
-                    bgcolor: "primary.dark",
-                    '&:hover':{
-                        bgcolor:"primary.main",
-                        opacity: [0.9, 0.8, 0.7],
-                    },
-                    marginTop: "0.5rem",
-                    paddingLeft:"2rem",
-                    paddingRight: "2rem"
-                    
                     
                 }}>
-                    <Grid container justifyContent="center">
-                    <Grid item xs={8}>
-                    <Box sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                }}>
-                    <Typography variant = "h6"> job name</Typography>
-                    <Button variant = "outlined">view</Button>
-                        </Box>
-                    </Grid></Grid>
-                </Box>
-                
+                    {
+                emp.map(data=>(
+                    <Box key={data.id.value} sx={{
+                        display: "flex",
+                            justifyContent: "space-between",
+                        bgcolor: "black",
+                        color: 'white',
+                        padding: '2rem',
+                        marginTop: "0.3rem"
+                    }}><Grid container justifyContent="center">
+                    <Grid item xs = {10}>
+                        
+                            <Card sx={{
+                                maxWidth:300,
+                                maxHeight:200
+                            }}>
+                                <CardMedia
+                                component = "img"
+                                height = "80"
+                                />
+                                <CardContent>
+                                    <Typography variant = "body2" component = "div">
+                                        {data.name.first}
+                                    </Typography>
+                                    <Typography variant = "body1" component = "div">
+                                        {data.name.last}
+                                    </Typography>
+                                </CardContent>
+                                <CardActions>
+                                    <Box sx={{
+                                        
+                                    }}>
+                                    <Button size= "small" variant='contained'>view</Button>
+                                    <Button sx={{
+                                        border:1,
+                                        borderColor: "black",
+                                        
+                                    }} size = "small" variant='contained'>delet</Button>
+                                    </Box>
+                                </CardActions>
 
-            </div>
+                            </Card>
+
+
+
+                     
+                        </Grid>
+                        
+                        </Grid>
+                        </Box >
+
+                ) )
+                    }
+                </Box>
+            }
+            
+
+        </div>
     )
 }
 

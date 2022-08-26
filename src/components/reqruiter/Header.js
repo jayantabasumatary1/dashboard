@@ -27,7 +27,7 @@ const Header = () => {
     };
 
     return (
-        
+        <div>
             <Box sx={{
                 bgcolor: "black",
                 color: 'white',
@@ -43,6 +43,8 @@ const Header = () => {
                 </Grid>
                 
                 </Grid>
+                </Box >
+                
                 
                 <Dialog open={open} onClose={handleClose} fullWidth>
                     <DialogTitle><Box sx={{
@@ -62,20 +64,20 @@ const Header = () => {
 
                             <Grid container spacing={2}>
                                 <Grid item xs={6}>
-                                    <FilledInput name='title' placeholder='job title' value={user.title} onChange={handleInputs} />
+                                    <FilledInput name='title' placeholder='job title' value={user.title} onChange={handleInputs} fullWidth/>
 
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <FilledInput name='salary' placeholder='salary' value={user.salary} onChange={handleInputs}>
+                                    <FilledInput name='salary' placeholder='salary' value={user.salary} onChange={handleInputs}fullWidth>
                                     </FilledInput>
                                 </Grid>
 
                                 <Grid item xs={6}>
-                                    <FilledInput placeholder='experience'>
+                                    <FilledInput placeholder='experience'fullWidth>
                                     </FilledInput>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <FilledInput placeholder='position'>
+                                    <FilledInput placeholder='position' fullWidth>
                                     </FilledInput>
                                 </Grid>
                                 <Grid item xs={12}>
@@ -99,8 +101,8 @@ const Header = () => {
                             </Grid> </Grid>
                     </DialogActions>
                 </Dialog>
-                
-            </Box >
+                </div>  
+            
     )
 }
 

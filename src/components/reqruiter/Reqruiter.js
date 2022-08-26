@@ -10,11 +10,7 @@ const Reqruiter = () => {
   return (
     <div>
         <Header/>
-        <Grid container justify = "center">
-            <Grid item xs ={10}>
-            <SearchBar/>
-        </Grid>
-        </Grid>
+        <JobList/>
         </div>
   )
 }
