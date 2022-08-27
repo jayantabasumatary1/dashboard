@@ -1,7 +1,21 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import {  Grid, Card, CardActionArea, CardContent, Typography, Button, CardActions, CardMedia } from '@mui/material';
+import {  Grid, Card, CardContent, Typography, Button, CardActions, CardMedia, createTheme } from '@mui/material';
 import { Box } from '@mui/system';
+import { Link } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+
+const theme = createTheme({
+    typography:{
+        body2:{
+            fontWeight: 500,
+        },
+        caption:{
+            fontSize: 10,
+        },
+    },
+})
+
 
 const JobList = () => {
     const [emp, setEmp] = useState([]);
@@ -40,22 +54,25 @@ const JobList = () => {
                                 maxWidth:"auto",
                                 maxHeight:150,
                                 padding: "0 2rem 0 2rem",
-                                bgcolor: "black"
+                                bgcolor: "black",
+                                opacity: 0.7
 
                             }}>
                                 <CardMedia
                                 height = "100"
                                 />
                                 <Box sx={{
+                                    
                                     backgroundColor: "black",
-                                    color: "whitesmoke",
+                                    color: "white",
                                     transition: "transform 0.15s ease-in-out",
                                     "&: hover":{
                                         backgroundColor: "rgb(22, 24, 23)",
                                         transform: "scale3d(1.05,1.05,1)"
                                     }}}>
                                 <CardContent sx={{}}>
-                                    <Typography variant = "body2" component = "div">
+                                    <ThemeProvider theme={theme}>
+                                    <Typography variant = "body2" component = "div" >
                                         {data.name.first}
                                     </Typography>
                                     <Typography variant = "body1" component = "div">
@@ -64,6 +81,7 @@ const JobList = () => {
                                     <Typography variant = "caption" component = "div">
                                         postedOn
                                     </Typography>
+                                    </ThemeProvider>
                                 </CardContent>
                                 <CardActions sx={{
                                     display: "flex",

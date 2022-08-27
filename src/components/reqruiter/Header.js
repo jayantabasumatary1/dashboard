@@ -46,11 +46,16 @@ const Header = () => {
                 </Box >
                 
                 
-                <Dialog open={open} onClose={handleClose} fullWidth>
+                <Dialog open={open} onClose={(_, reason)=>{
+                    if (reason !== "backdropClick"){
+                        handleClose();
+                    }
+                }} fullWidth>
                     <DialogTitle><Box sx={{
                         display: 'flex',
                         alignItems: "center",
-                        justifyContent: "space-between"
+                        justifyContent: "space-between",
+
                     }}>
                         Post a New Job
                         <IconButton  onClick={()=>setOpen(false)} >
@@ -61,11 +66,9 @@ const Header = () => {
 
                     <DialogContent>
                         <form id="myform">
-
                             <Grid container spacing={2}>
                                 <Grid item xs={6}>
                                     <FilledInput name='title' placeholder='job title' value={user.title} onChange={handleInputs} fullWidth/>
-
                                 </Grid>
                                 <Grid item xs={6}>
                                     <FilledInput name='salary' placeholder='salary' value={user.salary} onChange={handleInputs}fullWidth>
@@ -94,7 +97,7 @@ const Header = () => {
                     }}>
                                 <Button variant='contained' onClick={() => setOpen(false)}>
                                     cancel</Button>
-                                <Button variant='contained'>
+                                <Button variant='contained' onClick={() => setOpen(false)}>
                                     submit</Button>
                     </DialogActions>
                 </Dialog>
