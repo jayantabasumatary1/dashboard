@@ -2,8 +2,9 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import {  Grid, Card, CardContent, Typography, Button, CardActions, CardMedia, createTheme } from '@mui/material';
 import { Box } from '@mui/system';
-import { Link } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import Axios from 'axios';
+import { useNavigate } from 'react-router-dom'
 
 const theme = createTheme({
     typography:{
@@ -18,29 +19,24 @@ const theme = createTheme({
 
 
 const JobList = () => {
-    const [emp, setEmp] = useState([]);
-
-    const fetchData = ()=>{
-        fetch("https://randomuser.me/api/?nat=us&results=9&page=1").then((response)=>{
-            return response.json();
-        }).then((data)=>
-        {
-            let userData = data.results
-            setEmp(userData)
-        });
-    }
-
+    const navigate = useNavigate();
+    const [data, setData] = useState([]);
 
     useEffect(()=>
     {
-        fetchData();
+        Axios.get('https://jsonplaceholder.typicode.com/posts')
+        .then(res=>
+            {
+                console.log("geting from ::::", res.data)
+                setData(res.data)
+            }).catch(err => console.log(err))
     },[])
     return (
         <div>
             {
                 <Box sx={{}}>
                     {
-                emp.map(data=>(
+                data.map(data=>(
                     <Box key={data.id.value} sx={{
                         display: "flex",
                         justifyContent: "space-between",
@@ -73,10 +69,10 @@ const JobList = () => {
                                 <CardContent sx={{}}>
                                     <ThemeProvider theme={theme}>
                                     <Typography variant = "body2" component = "div" >
-                                        {data.name.first}
+                                        {data.id}
                                     </Typography>
                                     <Typography variant = "body1" component = "div">
-                                        {data.name.last}
+                                        {data.title}
                                     </Typography>
                                     <Typography variant = "caption" component = "div">
                                         postedOn
@@ -96,7 +92,10 @@ const JobList = () => {
                                         border:1,
                                         borderColor: "white",
                                         
-                                    }} size = "small" variant='contained'>delete</Button>
+                                    }}  size = "small" variant='contained' onClick={()=>{
+                                        navigate(
+                                            '/about');
+                                    }}  >delete</Button>
                                     
                                 </CardActions>
                                 </Box>

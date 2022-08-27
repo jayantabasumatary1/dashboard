@@ -1,28 +1,42 @@
 import React from 'react'
 import { Box, Typography, } from "@mui/material"
-import { createTheme, } from '@mui/material/styles';
-import JobList from '../reqruiter/JobList';
-import dasboardwall from "./dasboardwall.jpg"
+import { createTheme, ThemeProvider, } from '@mui/material/styles';
+import CssBaseline from '@mui/material';
 
-
-const theme = createTheme()
+const dtheme = createTheme({
+    typography:{
+    },
+    palette: {
+        mode: 'dark',
+    },
+});
 const Employee = () => {
     return (
-        <div className='emp-container'>
-            <Box sx={{
-                bgcolor: "black",
-                color: 'white',
-                padding: '4rem',
+        <ThemeProvider theme={dtheme}>
+        
+        <div>
+            <Box  style={{
+                colorScheme: "dark"
+            }} sx={{
+                bgcolor: "#0A1929",
+                height: '100vh',
+                minHeight  : '100vh',
+            
             }}>
-                <Typography variant='h3'>
-                    Job list available
-                </Typography>
-            </Box>
-            <box>
-                <JobList />
+                <Box  sx={{
+                    color: "white",
+                    bgcolor: "black",
+                    padding: "2rem",
+                    opacity: 0.5
+                }}>
+                <Typography variant='h3'>JOB LIST AVAILABLE</Typography>     
+                </Box>
+                <Box>
 
-            </box>
-            </div>
+                </Box>
+            </Box>
+        </div>
+        </ThemeProvider>
     )
 }
 
