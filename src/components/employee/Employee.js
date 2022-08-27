@@ -1,19 +1,10 @@
 import React from 'react'
-import { Box, Typography, } from "@mui/material"
+import { Box, Button, Typography, } from "@mui/material"
 import { createTheme, ThemeProvider, } from '@mui/material/styles';
-import CssBaseline from '@mui/material';
+import Header from './Header';
 
-const dtheme = createTheme({
-    typography:{
-    },
-    palette: {
-        mode: 'dark',
-    },
-});
 const Employee = () => {
     return (
-        <ThemeProvider theme={dtheme}>
-        
         <div>
             <Box  style={{
                 colorScheme: "dark"
@@ -23,20 +14,9 @@ const Employee = () => {
                 minHeight  : '100vh',
             
             }}>
-                <Box  sx={{
-                    color: "white",
-                    bgcolor: "black",
-                    padding: "2rem",
-                    opacity: 0.5
-                }}>
-                <Typography variant='h3'>JOB LIST AVAILABLE</Typography>     
-                </Box>
-                <Box>
-
-                </Box>
+                <Header/>
             </Box>
         </div>
-        </ThemeProvider>
     )
 }
 
