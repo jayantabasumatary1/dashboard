@@ -5,7 +5,16 @@ import { Dialog, InputBase, DialogActions, DialogContent, IconButton,DialogConte
 import { Close as CloseIcon } from '@mui/icons-material';
 import Divider from '@mui/material/Divider';
 
-const Header = () => {
+const Header = ({ posts, setSearchResults}) => {
+    const handleSubmit = (e) => e.preventDefault()
+
+    const handleSearchChange=(e)=>{
+        if(!e.target.value) return setSearchResults(posts)
+
+        const resultsArray = posts.filter(post => post.title.includes(e.target.value) || post.body.includes(e.target.value))
+        setSearchResults(resultsArray)
+    }
+
     const [open, setOpen] = useState(false);
     const handleClickOpen=()=>{
         setOpen(true);
@@ -57,15 +66,16 @@ const Header = () => {
                             backgroundColor: "black" }}
                             
                         >
+                            
                         <InputBase
+                        onChange={handleSearchChange}
                         sx={{ ml: 1, flex: 1, 
                         input: {
-                            color: "white"
+                            color: "white",
                         }}}
-                        placeholder="Search Job"
-                        
-                        />
-                        <IconButton color='primary' type="button" sx={{ p: '10px' }} aria-label="search">
+                        placeholder="Search Job"/>
+
+                        <IconButton onSubmit={handleSubmit} color='primary' type="button" sx={{ p: '10px' }} aria-label="search">
                         <SearchIcon />
                         </IconButton>
                         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" color="primary" />
