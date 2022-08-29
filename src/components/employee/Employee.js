@@ -33,6 +33,12 @@ const Employee = () => {
                 }}>
                 <JobAvailable searchResults={searchResults}/>
                 </Box>
+                <Box sx={{
+                    bgcolor: "#0A1929",
+                    height: "100vh",
+                    minHeight: "100vh"
+                }}>
+                    </Box>
                 
         </div>
     )

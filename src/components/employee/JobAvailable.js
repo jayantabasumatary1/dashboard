@@ -1,6 +1,6 @@
 import React from 'react'
 import Posts from './Posts'
-import { Box } from '@mui/system'
+import { Grid } from '@mui/material'
 
 const JobAvailable = ({searchResults}) => {
     const results = searchResults.map(post => <Posts key={post.id} post ={post}/>)
@@ -8,10 +8,9 @@ const JobAvailable = ({searchResults}) => {
     const content = results.length ? results : <article> <p>
         No matching posts</p> </article>
   return (
-   <div>
-  {content}
-       
-   </div>
+    <Grid container>
+      {content}
+      </Grid>
     
   )
 }

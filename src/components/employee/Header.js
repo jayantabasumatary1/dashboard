@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import { Box, Button, TextField, Typography,makeStyles, FilledInput, Paper, Input } from "@mui/material"
+import { Box, Button, Typography,  Paper, } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
-import { Dialog, InputBase, DialogActions, DialogContent, IconButton,DialogContentText, DialogTitle } from '@mui/material';
+import { Dialog, InputBase, DialogContent, IconButton, } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import Divider from '@mui/material/Divider';
 
+
 const Header = ({ posts, setSearchResults}) => {
     const handleSubmit = (e) => e.preventDefault()
-
     const handleSearchChange=(e)=>{
         if(!e.target.value) return setSearchResults(posts)
 
@@ -44,21 +44,22 @@ const Header = ({ posts, setSearchResults}) => {
                         borderRadius: "16px"
                     }}
                     >Search...</Button>
-                    <Dialog open={open} onClose={(_, reason)=>{
+                    <Dialog open={open}  onClose={(_, reason)=>{
                         if (reason!== "backdropClick"){
                             {handleClose()}
                         }
                     }} fullWidth
+                    
                     PaperProps={{
                         style: {
-                          backgroundColor: 'rgba(127, 179, 224, 0.3)',
-                          boxShadow: "none"
-                          
+                          backgroundColor: 'rgba(127, 179, 224, 0.2)',
+                          boxShadow: "none",  
+                          top: "-36vh"
                         },
                       }}>
                     
                         <DialogContent sx={{
-                            padding: "0.6rem"
+                            padding: "0.1rem"
                         }}>
                         <Paper
                             component="form"
