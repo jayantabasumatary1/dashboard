@@ -1,27 +1,20 @@
-import { Card, CardContent, Box, Button, Typography } from '@mui/material'
+import { Card, CardContent, Typography, Grid, makeStyles} from '@mui/material'
 import React from 'react'
 
-
-
 const Posts = ({post}) => {
-  return (
 
-    <Box sx={{
-        bgcolor: "#0A1929",
-    }}>
-        <Card sx={{
-            maxWidth: "50%",
+  return (
+    <Grid container>
+    <Grid item xs ={12} sm={6} md={4} >
+            <Card sx={{
             bgcolor: "rgba(0, 0, 0, 0.4)",
             padding: "1rem",
-            ml: 2,
-            mt: 2
-
         }}>
             <CardContent>
-                <Typography variant='h5'>
+                <Typography gutterBottom variant='h5' component="h2">
                 {post.title}
                 </Typography>
-                <Typography>
+                <Typography variant='body2' component="p" >
                 {post.body}
                 </Typography>
                 <Typography>
@@ -29,8 +22,8 @@ const Posts = ({post}) => {
                 </Typography>
             </CardContent>
             </Card>
-    </Box>      
-  )
-}
+            </Grid>
+            </Grid>
+        )}   
 
 export default Posts

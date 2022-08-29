@@ -23,23 +23,17 @@ const Employee = () => {
         <div>
             <Box sx={{
                 bgcolor: "#0A1929",
-                height: '100vh',
-                minHeight  : '100vh',
-            }}>
-
-            
-
-            <Box  style={{
-                colorScheme: "dark"
-            }} sx={{
-                bgcolor: "#0A1929",
-                
-            
             }}>
                 <Header posts={posts} setSearchResults={setSearchResults} />
+                </Box>
+                <Box sx={{
+                    flexGrow: 1,
+                    paddingTop: 4,
+                    bgcolor: "#0A1929",
+                }}>
                 <JobAvailable searchResults={searchResults}/>
                 </Box>
-            </Box>
+                
         </div>
     )
 }

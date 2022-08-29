@@ -88,14 +88,7 @@ const Header = ({ posts, setSearchResults}) => {
                         
                     </Dialog>
 
-                </Box>
-                    
-
-                    
-                     
-                    
-                     
-                        
+                </Box>                      
                 </Box>
     </div>
   )
