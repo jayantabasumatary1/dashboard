@@ -5,7 +5,6 @@ import { Dialog, InputBase, DialogContent, IconButton, } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import Divider from '@mui/material/Divider';
 
-
 const Header = ({ posts, setSearchResults}) => {
     const handleSubmit = (e) => e.preventDefault()
     const handleSearchChange=(e)=>{
@@ -25,6 +24,7 @@ const Header = ({ posts, setSearchResults}) => {
 
   return (
     <div>
+        
         <Box  sx={{
                     color: "white",
                     padding: "2rem",
@@ -91,6 +91,7 @@ const Header = ({ posts, setSearchResults}) => {
 
                 </Box>                      
                 </Box>
+                
     </div>
   )
 }

@@ -30,6 +30,8 @@ const Employee = () => {
                     flexGrow: 1,
                     paddingTop: 4,
                     bgcolor: "#0A1929",
+                    paddingLeft: "0.6rem",
+                    paddingRight: "0.6rem"
                 }}>
                 <JobAvailable searchResults={searchResults}/>
                 </Box>

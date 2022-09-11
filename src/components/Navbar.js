@@ -29,10 +29,13 @@ const Navbar = () => {
             <ul className={click ? "nav-menu active" : "nav-menu"}>
 
                 <li>
-                    <Link to="/contact">Contact</Link>
+                    <Link to="/reqruiter">Reqruiter</Link>
                 </li>
                 <li>
                     <Link to="/login">Login/Register</Link>
+                </li>
+                <li>
+                    <Link to ="/employee"> Employee </Link>
                 </li>
             </ul>
             <div className="Hamburger" onClick={handleClick}>
@@ -41,8 +44,6 @@ const Navbar = () => {
                         <FaBars size={20} style={{ color: "#fff" }} />
                     )
                 }
-
-
             </div>
         </div>
     )

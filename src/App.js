@@ -6,6 +6,7 @@ import Contact from "./routes/Contact";
 import Login from "./routes/Login";
 import EmployeeLogin from "./routes/EmployeeLogin";
 import ReqruiterLogin from "./routes/ReqruiterLogin";
+import Hr from "./routes/Hr";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path="/employee" element={<EmployeeLogin />} />
         <Route path="/reqruiter" element={<ReqruiterLogin />} />
+        <Route path="/hr" element={<Hr/>} />
       </Routes>
     </>
   );
