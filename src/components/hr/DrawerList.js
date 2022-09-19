@@ -4,8 +4,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { styled, Stack ,Tooltip,List,ListItemText, ListItemButton, ListItemIcon, IconButton, ListSubheader, Typography } from '@mui/material'; 
-import { hover } from '@testing-library/user-event/dist/hover';
+import { styled, Stack ,List,ListItemText, ListItemButton, ListItemIcon, IconButton, ListSubheader, Typography, Box } from '@mui/material'; 
 const iconData = [
     {icon: <HomeIcon/>, label: "Home"},
     {icon: <DashboardCustomizeIcon/>, label: "Dashboard"},
@@ -18,6 +17,7 @@ const FireNav = styled(List)({
     '& .MuiListItemButton-root': {
       paddingLeft: 24,
       paddingRight: 24,
+      
     },
     '&, & .MuiListItemIcon-root': {
       minWidth: 2,
@@ -31,17 +31,18 @@ const FireNav = styled(List)({
     '& .MuiListItemText-root':{
         color: "black",
     },
-
   });
 
 
 const DrawerList = () => {
   return (
-    <>
+    <Box>
         <ListSubheader sx={{
             bgcolor: "#0A1929",
             display: "flex",
-            padding: "0.78rem 0 0.78rem 0.78rem"
+            padding: "0.78rem 0 0.78rem 0.78rem",
+            mb: 1,
+            boxShadow:  "2px 2px 2px 1px rgba(0, 0, 0, 0.4)"
         }} >
             <Stack direction= "row" alignItems = "center" gap={1} flexGrow={1} >
             <IconButton sx={{
@@ -62,12 +63,12 @@ const DrawerList = () => {
             </Tooltip>  
   */}       
         </ListSubheader>
-        <FireNav disablePadding >
+        <FireNav disablePadding sx={{ width: 300}} > 
         {
         iconData.map((item)=>(
             <ListItemButton
                 key = {item.label}
-                sx={{ py: 1, minHeight: 32,}}>
+                sx={{ py: 1.5, minHeight: 32,}}>
                     <ListItemIcon sx={{ color: 'black' }}>
                       {item.icon}
                     </ListItemIcon>
@@ -78,7 +79,7 @@ const DrawerList = () => {
                   </ListItemButton>
         ))}
       </FireNav>
-      </>
+      </Box>
   )
 }
 

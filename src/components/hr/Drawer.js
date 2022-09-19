@@ -1,8 +1,5 @@
 import React from 'react'
-import { Box} from '@mui/system'
-import { IconButton, Tooltip, Drawer,} from '@mui/material'
-import CloseIcon from '@mui/icons-material/Close';
-import {Fab} from '@mui/material';
+import { IconButton, Tooltip, Drawer, createTheme,} from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
 import DrawerList from './DrawerList';
 import { useState } from 'react';
@@ -12,15 +9,16 @@ export const Drawericon = () => {
     const [open , setOpen ] = useState(false);
     const openDrawer = ()=>{
         setOpen(true);
-    }
+    } 
   return (
-    <div>
+    <>
     <Tooltip title="Open Menu" arrow>
     <IconButton sx={{ mr: 2 }} onClick={openDrawer}>
         <MenuIcon/>
       </IconButton>
     </Tooltip>
     <Drawer
+    BackdropProps={{ invisible: true }}
     sx={{
       width: drawerWidth,
       flexShrink: 0,
@@ -34,8 +32,8 @@ export const Drawericon = () => {
         anchor="left"
         open={open}
          >
-            <DrawerList/>
+          <DrawerList/>  
           </Drawer>
-    </div>
+    </>
   )
 }
