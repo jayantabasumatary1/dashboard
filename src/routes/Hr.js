@@ -3,9 +3,9 @@ import Navbar from '../components/hr/Navbar'
 import ButtonTheme from '../components/hr/ButtonTheme'
 import Joblist from '../components/hr/Joblist'
 import { Box } from '@mui/system'
-import DrawerRight, { drawerWidth } from '../components/hr/DrawerRight'
-import { styled } from '@mui/material'
-
+import  { drawerWidth } from '../components/hr/DrawerRight'
+import { styled, createTheme, ThemeProvider, CssBaseline, Switch } from '@mui/material'
+import { useState } from 'react'
 const StyledBox= styled(Box)(({theme})=>({
   width : `calc(100% - ${drawerWidth}px)`,
   [theme.breakpoints.down("lg")]:{
@@ -13,17 +13,14 @@ const StyledBox= styled(Box)(({theme})=>({
   }
 }))
 
-const Hr = () => {
 
+const Hr = () => {
   return (
     <>
-    <StyledBox sx={{
-    }} >
-    <Navbar/>
-      <ButtonTheme/>
+      <StyledBox>
+      <Navbar/>
       <Joblist/>
-      <DrawerRight/>
-    </StyledBox> 
+      </StyledBox> 
     </>
 
   )

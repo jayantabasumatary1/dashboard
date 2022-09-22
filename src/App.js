@@ -1,8 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./index.css";
-import About from "./routes/About";
 import Home from "./routes/Home";
-import Contact from "./routes/Contact";
 import Login from "./routes/Login";
 import EmployeeLogin from "./routes/EmployeeLogin";
 import ReqruiterLogin from "./routes/ReqruiterLogin";

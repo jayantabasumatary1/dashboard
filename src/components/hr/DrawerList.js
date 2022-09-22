@@ -4,7 +4,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { styled, Stack ,List,ListItemText, ListItemButton, ListItemIcon, IconButton, ListSubheader, Typography, Box } from '@mui/material'; 
+import ButtonTheme from './ButtonTheme';
+import { styled, Divider,Stack ,List,ListItemText, ListItemButton, ListItemIcon, IconButton, ListSubheader, Typography, Box } from '@mui/material'; 
 const iconData = [
     {icon: <HomeIcon/>, label: "Home"},
     {icon: <DashboardCustomizeIcon/>, label: "Dashboard"},
@@ -78,6 +79,12 @@ const DrawerList = () => {
                     />
                   </ListItemButton>
         ))}
+        <ListItemText primary="Preferences" sx={{
+          paddingLeft: 4
+        }}>
+        </ListItemText>
+        <Divider/>
+        <ButtonTheme/>
       </FireNav>
       </Box>
   )

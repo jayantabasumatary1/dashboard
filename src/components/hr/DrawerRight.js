@@ -1,5 +1,5 @@
 import React from 'react'
-import { Drawer, styled } from '@mui/material'
+import { Avatar, Drawer,List, ListItem, ListItemAvatar, ListItemText, styled } from '@mui/material'
 export const drawerWidth = 500
 
 const StyledDrawer = styled(Drawer)(({theme})=>({
@@ -21,14 +21,22 @@ const StyledDrawer = styled(Drawer)(({theme})=>({
 }))
 
 
-const DrawerRight = () => {
+const DrawerRight = (props) => {
   return (
     <div>
         <StyledDrawer
     variant="permanent"
     anchor="right"
     open= "true"
-  >
+  > <List>
+    <ListItem>
+      <ListItemText primary="full"></ListItemText>
+      <ListItemAvatar>
+        <Avatar src={props.data}></Avatar>
+      </ListItemAvatar>
+    </ListItem>
+  </List>
+
 </StyledDrawer></div>
   )
 }
