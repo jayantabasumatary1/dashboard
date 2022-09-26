@@ -6,7 +6,7 @@ export const API = axios.create({
 
 export const getAPIdata = async()=>{
     try {
-        const response = await API.get(`/users?_page=1&_limit=5`)
+        const response = await API.get('/users')
         return response.data
     } catch (error) {
         return error.message

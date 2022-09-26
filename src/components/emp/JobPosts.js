@@ -1,16 +1,15 @@
-import { Avatar,  createTheme, Grow, IconButton, List,ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemText, Popover, styled, ThemeProvider, Typography } from '@mui/material'
+import { Avatar,  createTheme,InputBase, IconButton, List,ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemText, Popover, styled, ThemeProvider, Typography } from '@mui/material'
 import { Box } from '@mui/material'
 import React from 'react'
-import image1 from "../../images/image1.jpg"
+import { getAPIdata } from './Axios'
+import image1 from "../../images/React.png"
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import PageButton from './Pagination';
-import { getAPIdata } from './AxiosPost';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import DrawerRight from './DrawerRight';
+import { drawerWidthRight } from './DrawerRight'
+import DrawerRight from './DrawerRight'
 const StyledDiv = styled('div')(({theme})=>({
 display: "inline-block",
 color: "#444",
@@ -21,7 +20,6 @@ marginRight: theme.spacing(2),
 borderRadius: 5,
 marginTop: 5
 }))
-
 const theme = createTheme({
   components:{
     MuiListItemButton:{
@@ -31,10 +29,21 @@ const theme = createTheme({
     }
   }
 })
-
+const drawerWidth = 250;
 const StyledList = styled(List) (({theme})=> ({
   '& .MuiListItem-root ':{
     padding: theme.spacing(1,4, 1, 4),
+    width: `calc(100% - ${drawerWidth + drawerWidthRight}px)` ,
+    marginLeft: `${drawerWidth}px`,
+    marginRight: `${drawerWidthRight}px`,
+    [theme.breakpoints.down("lg")]:{
+      width: `calc(100% - ${drawerWidth}px)`
+      
+    },
+    [theme.breakpoints.down("sm")]:{
+        width: "100%",
+        marginLeft: theme.spacing(1)
+    },
       '& :hover':{
         transition: "transform 0.25s ease-in-out",
         backgroundColor: "rgba(127, 179, 224, 0.3)",
@@ -64,18 +73,19 @@ const StyledList = styled(List) (({theme})=> ({
   }
 }))
 
-const Joblist = () => {
-  const [postsData, setPostsData] = useState([]); 
-  const [DrawerData, setDrawerData]= useState([]);
+const JobPosts = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  
+  const [postsData, setPostsData] = useState([]);
+  const [drawerData, setdrawerData] = useState([]) ;
+  const [idData, setIdData] = useState("");
   useEffect(()=>{
     getAPIdata().then(json=>{
       setPostsData(json)
       return json
+  }).then(json=>{
+    setdrawerData(json)
   })
 },[])
-
   const handlePopover = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -83,14 +93,17 @@ const Joblist = () => {
   const handleClosePopover = () => {
     setAnchorEl(null);
   };
+  const handleId =()=>{
+    setIdData("6")
+  }
   const open = Boolean(anchorEl);
 return (
     <>
     <ThemeProvider theme = {theme}>
-        <StyledList >
-          {postsData.map((user)=>(
+        <StyledList  >
+          {postsData.map((user,)=>(
             <ListItem key = {user.id} >
-              <ListItemButton alignItems="flex-start">
+              <ListItemButton alignItems="flex-start" onClick={handleId} >
                 <ListItemAvatar >
                   <Avatar src= {image1} style={{ borderRadius: 8 }} />
                 </ListItemAvatar>
@@ -172,11 +185,10 @@ return (
             </ListItem> 
             ))}   
         </StyledList>
-        <PageButton/>
+        <DrawerRight drawerData ={drawerData} idData = {idData}/> 
         </ThemeProvider>
-        <DrawerRight/>
     </>
   )
 }
 
-export default Joblist
+export default JobPosts

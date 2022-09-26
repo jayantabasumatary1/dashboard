@@ -11,6 +11,12 @@ const theme = createTheme({
         }
     }
 })
+export const handlePage= (event)=>
+    { 
+         return event.target.textContent
+    }
+
+
 const PageButton = () => {
   return (
     <ThemeProvider theme= {theme} > 
@@ -20,7 +26,8 @@ const PageButton = () => {
         alignItems: "center"
     }}>
         <Stack spacing={2} >
-        <Pagination count={5} color="primary"> </Pagination>
+        <Pagination count={5} color="primary" onChange={handlePage} selected={true} >
+             </Pagination>
         </Stack>
        
     </Box>

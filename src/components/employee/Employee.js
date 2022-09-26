@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Grid,} from "@mui/material"
+import { Box} from "@mui/material"
 import Header from './Header';
 import { getPosts } from './AxioS';
 import JobAvailable from './JobAvailable';
@@ -40,8 +40,7 @@ const Employee = () => {
                     height: "100vh",
                     minHeight: "100vh"
                 }}>
-                    </Box>
-                
+                </Box>
         </div>
     )
 }
