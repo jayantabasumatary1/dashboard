@@ -4,7 +4,7 @@ export const API = axios.create({
 })
 
 
-export const getAPIdata = async()=>{
+export const getAPIData = async()=>{
     try {
         const response = await API.get('/users')
         return response.data

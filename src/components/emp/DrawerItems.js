@@ -3,15 +3,17 @@ import HomeIcon from '@mui/icons-material/Home';
 import SettingsIcon from '@mui/icons-material/Settings';
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { Divider, List,ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { Divider, List,ListItemButton, ListItemIcon, ListItemText, ThemeProvider } from '@mui/material';
 import styled from 'styled-components';
 import {Switch} from '@mui/material';
 import {Box} from '@mui/material';
+import { useState } from 'react';
+import {createTheme} from '@mui/material';
 const iconData = [
-    {icon: <HomeIcon/>, label: "Home"},
-    {icon: <DashboardCustomizeIcon/>, label: "Dashboard"},
-    {icon: <SettingsIcon/>, label:"Settings" },
-    {icon: <LogoutIcon/>, label: "Log Out" },
+    {icon: <HomeIcon/>, label: "Home", index: 0},
+    {icon: <DashboardCustomizeIcon/>, label: "Dashboard", index: 1},
+    {icon: <SettingsIcon/>, label:"Settings", index:2 },
+    {icon: <LogoutIcon/>, label: "Log Out", index: 3 },
 ];
 const FireNav = styled(List)({
     '& .MuiListItemButton-root': {
@@ -33,16 +35,31 @@ const FireNav = styled(List)({
     },
   });
 
+  const theme = createTheme({
+    components: {
+      MuiListItemButton:{
+        defaultProps:{
+          disableTouchRipple : true,
+        },  
+      }
+    },
+  });
 const DrawerItems = () => {
+  const [selectedIndex, setSelectedIndex]=useState(0);
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  };
   return (
-    <div>
+    <ThemeProvider theme = {theme}> 
        
          <FireNav disablePadding sx={{ width:{xs: 200, sm: 250 } }} > 
         {
         iconData.map((item)=>(
             <ListItemButton
                 key = {item.label}
-                sx={{ py: 1.5, minHeight: 32,}}>
+                selected={selectedIndex === `${item.index}`}
+                onClick={(event) => handleListItemClick(event, `${item.index}`)}
+                sx={{ py: 1.5, minHeight: 32}}>
                     <ListItemIcon>
                       {item.icon}
                     </ListItemIcon>
@@ -56,13 +73,13 @@ const DrawerItems = () => {
           paddingLeft: 3
         }}>
         </ListItemText>
-        <Divider/>
+        <Divider />
         <Box sx={{paddingLeft: 2 }}  >
         <Switch/>
         </Box>
       </FireNav>
       
-    </div>
+      </ThemeProvider>
   )
 }
 

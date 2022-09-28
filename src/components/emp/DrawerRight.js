@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, Drawer,List, ListItem, ListItemAvatar, ListItemIcon, ListItemText, styled, Typography } from '@mui/material'
+import { Avatar, Drawer,List, ListItem, ListItemAvatar,ListItemText, styled, Typography } from '@mui/material'
 import GoogleIcon from '@mui/icons-material/Google';
 import {Divider} from '@mui/material';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
@@ -32,9 +32,6 @@ const StyledList = styled(List) (({theme})=> ({
       fontSize: 15,
       fontWeight:'bold' ,
     },
-    '& .MuiListItemText-secondary':{
-      color: "rgba(127, 179, 224, 0.7)"
-    }
   }))
 
 const DrawerRight = ({drawerData, idData}) => {
@@ -47,7 +44,7 @@ const DrawerRight = ({drawerData, idData}) => {
   > <List>
     <ListItem sx={{ alignItems: "center", justifyContent: "center", paddingTop: 5, paddingBottom: 2,}}>
       <ListItemAvatar >
-        <Avatar  sx={{ width: 80, height: 80 }} style={{ borderRadius: 10}}>
+        <Avatar sx={{ width: 80, height: 80, bgcolor:"rgba(127, 179, 224, 0.8)" }} style={{ borderRadius: 10}}>
             <GoogleIcon fontSize='large' />
         </Avatar>
       </ListItemAvatar>
@@ -57,7 +54,7 @@ const DrawerRight = ({drawerData, idData}) => {
             return (
                 <> 
                 <ListItem disablePadding sx={{ textAlign: "center", justifyContent: "center", }} key = {drawer.id} > 
-                 <ListItemText primary = {drawer.name } color= "primary" secondary={
+                 <ListItemText primary = {drawer.name } color= "primary"  secondary={
                     <Typography variant='caption text' > {drawer.email}</Typography>
                  }>
                  </ListItemText>
@@ -66,7 +63,7 @@ const DrawerRight = ({drawerData, idData}) => {
                 <Divider sx={{borderBottomWidth: '4px'  }} />
                 <ListItem alignItems='flex-start'>
                     <FiberManualRecordIcon style={{ fontSize: 15, marginRight: 4, marginTop: 8 }}/>
-                <ListItemText primary="About The Company"
+                <ListItemText primary="About The Job"
                 secondary={
                     <React.Fragment>
                     { Object.keys(drawer.company).map((key, i)=>( 
@@ -74,6 +71,34 @@ const DrawerRight = ({drawerData, idData}) => {
                           { drawer.company[key] }
                         </Typography>
                       )) }
+                      </React.Fragment>
+                      }>
+
+                </ListItemText>
+                </ListItem>
+                <ListItem alignItems='flex-start'>
+                    <FiberManualRecordIcon style={{ fontSize: 15, marginRight: 4, marginTop: 8 }}/>
+                <ListItemText primary="Required Skills"
+                secondary={
+                    <React.Fragment>
+                    { Object.keys(drawer.address.geo).map((key, i)=>( 
+                        <Typography variant='caption text' key ={i}>
+                          { drawer.address.geo[key] }
+                          
+                        </Typography>
+                      )) }
+                      {drawer.address.street}{drawer.address.suite}{drawer.address.city}{drawer.address.zipcode}
+                      </React.Fragment>
+                      }>
+
+                </ListItemText>
+                </ListItem>
+                <ListItem alignItems='flex-start'>
+                    <FiberManualRecordIcon style={{ fontSize: 15, marginRight: 4, marginTop: 8 }}/>
+                <ListItemText primary="Top Candidates"
+                secondary={
+                    <React.Fragment>
+                      {drawer.username}{drawer.phone}{drawer.website}
                       </React.Fragment>
                       }>
 

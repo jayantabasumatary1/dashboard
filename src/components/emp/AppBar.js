@@ -1,66 +1,12 @@
 import React from 'react'
 import { useState } from 'react';
 import { styled } from '@mui/material/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import Avatar from '@mui/material/Avatar';
-import {List, ListItem, ListItemAvatar, ListItemText,  } from '@mui/material';
+import {List, ListItem, ListItemAvatar, ListItemText,Drawer,Typography , IconButton,Toolbar,AppBar,Box,Avatar  } from '@mui/material';
 import DrawerItems from './DrawerItems';
-import { Drawer } from '@mui/material';
 import JobPosts from './JobPosts';
-import { drawerWidthRight } from './DrawerRight';
 
 const drawerWidth = 250;
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: 20,
-  backgroundColor: 'rgba(127, 179, 224, 0.5)',
-  marginLeft: 0,
-  marginRight: theme.spacing(2),
-  width: '100%',
-  height: "32px",
-  boxShadow: "1px 1px 2px 1px rgba(0, 0, 0, 0.4)",
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(1),
-    width: 'auto',
-  },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  color: "black"
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'black',
-  height: "32px",
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
-      },
-    },
-  },
-}));
-
 const StyledIconButton = styled(IconButton)(({theme})=>({
     "&.MuiIconButton-root":{
         size: "large",
@@ -114,8 +60,8 @@ const Appbar = () => {
     }
   return (
     <Box sx={{ flexGrow: 1, }}>
-      <AppBar position= "sticky"  sx={{bgcolor: "white",width: { sm: `calc(100% - ${drawerWidth+ drawerWidthRight}px)` },
-          ml: { sm: `${drawerWidth}px` }, mr: {sm: `${drawerWidthRight}px`  } }}>
+      <AppBar position= "sticky"  sx={{bgcolor: "white",width: { sm: `calc(100% - ${drawerWidth}px)` },
+          ml: { sm: `${drawerWidth}px` }}}>
         <Toolbar>
           <StyledIconButton disableTouchRipple
             aria-label="open drawer"
@@ -127,20 +73,11 @@ const Appbar = () => {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, fontWeight: 600 }}
+            sx={{ flexGrow: 1, display: {  sm: 'block' }, fontWeight: 600 }}
             color="black"
           >
             Jobs for you
           </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon sx={{color:'rgba(127, 179, 224, 1)' }} />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
         </Toolbar>
       </AppBar>
       <StyledDrawer
