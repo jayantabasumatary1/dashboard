@@ -141,11 +141,11 @@ const skills=[
 ]
 
 const JobPosts = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
   const [postsData, setPostsData] = useState([]);
   const [searchData, setSearchData] = useState([]);
   const [idData, setIdData] = useState("");
   const[ filterValue, setFilterValue]= useState("")
+  const [anchorEl, setAnchorEl] = useState(null);
   useEffect(()=>{
     getAPIData().then(json=>{
       setPostsData(json)
@@ -154,6 +154,7 @@ const JobPosts = () => {
     setSearchData(json)
   })
 },[])
+console.log(postsData)
 const handleSearch = (e)=>{
   if(e.target.value == ''){
     setPostsData(searchData)
@@ -167,16 +168,20 @@ const handleSearch = (e)=>{
   const handlePopover = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  
 
   const handleClosePopover = () => {
     setAnchorEl(null);
   };
+  
   const handleId =(id)=>{
     setIdData(id)
   }
+  
   const open = Boolean(anchorEl);
 return (
-    <>
+  
+    <div>
     <ThemeProvider theme = {theme}>
       <StyledSearchList disablePadding>
         <ListItem >
@@ -205,7 +210,7 @@ return (
         <StyledList  >
           {postsData.map((user)=>(
             <ListItem key = {user.id} >
-              <ListItemButton value={user.id} alignItems="flex-start" onClick={()=>handleId(`${user.id}`) } >
+              <ListItemButton alignItems="flex-start" onClick={()=>handleId(`${user.id}`) } >
                 <ListItemAvatar >
                   <Avatar src= {image1} style={{ borderRadius: 8 }} />
                 </ListItemAvatar>
@@ -284,7 +289,7 @@ return (
         </StyledList>
         </ThemeProvider>
         <DrawerRight drawerData ={postsData} idData = {idData}/> 
-    </>
+    </div>
   )
 }
 

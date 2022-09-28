@@ -1,8 +1,9 @@
 import React from 'react'
-import { Avatar, Drawer,List, ListItem, ListItemAvatar,ListItemText, styled, Typography } from '@mui/material'
+import { Avatar, Drawer,List, ListItem, ListItemAvatar,ListItemText, styled, Typography, Paper, Box, Grow } from '@mui/material'
 import GoogleIcon from '@mui/icons-material/Google';
 import {Divider} from '@mui/material';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import images from '../../images/images.jpg'
 export const drawerWidthRight = 400
 const StyledDrawer = styled(Drawer)(({theme})=>({
   '& .MuiDrawer-root':{
@@ -34,19 +35,62 @@ const StyledList = styled(List) (({theme})=> ({
     },
   }))
 
+  const icon = (
+    <Box sx={{width: 280 }}>
+      <List>
+      <ListItem sx={{ alignItems: "center", justifyContent: "center", paddingTop: 3, paddingBottom: 2,}}>
+      <ListItemAvatar >
+        <Avatar sx={{ width: 100, height: 100, bgcolor:"rgba(127, 179, 224, 0.8)" }} style={{ borderRadius: 10}} src={images}>
+        </Avatar>
+      </ListItemAvatar>
+    </ListItem >
+      </List>
+        <Box component="div" sx={{ textAlign: "center"}}> 
+            <Typography variant='h2'color="rgba(127, 179, 224, 0.8)"  fontWeight="600" > Welcome To Flexday
+               </Typography> 
+          </Box>
+          </Box>     
+    
+  );
+
 const DrawerRight = ({drawerData, idData}) => {
-  return (
-    <div>
+  if (idData == ""){
+    return(
+      <div>
+        <StyledDrawer
+        variant="permanent"
+        anchor="right"
+        open= "true">
+          <List>
+          <ListItem sx={{ alignItems: "center", justifyContent: "center", paddingTop: 5, paddingBottom: 2,}}>
+          <Box sx={{ display: "flex"}} >
+          <Grow
+          in= {true}
+          style={{ transformOrigin: '0 0 0' }}
+          {...(true? { timeout: 2500 } : {})}>
+          {icon}
+        </Grow> 
+        </Box>
+        </ListItem>
+        </List>
+        </StyledDrawer>
+      </div>
+
+    )
+  }
+  else{
+    return(
+      <div>
         <StyledDrawer
     variant="permanent"
     anchor="right"
     open= "true"
   > <List>
     <ListItem sx={{ alignItems: "center", justifyContent: "center", paddingTop: 5, paddingBottom: 2,}}>
-      <ListItemAvatar >
-        <Avatar sx={{ width: 80, height: 80, bgcolor:"rgba(127, 179, 224, 0.8)" }} style={{ borderRadius: 10}}>
-            <GoogleIcon fontSize='large' />
-        </Avatar>
+      <ListItemAvatar>
+      <Avatar sx={{ width: 80, height: 80, bgcolor:"rgba(127, 179, 224, 0.8)" }} style={{ borderRadius: 10}} >
+        <GoogleIcon fontSize='large' />
+      </Avatar>
       </ListItemAvatar>
     </ListItem>
     { drawerData.map((drawer, index)=>{
@@ -112,9 +156,8 @@ const DrawerRight = ({drawerData, idData}) => {
     }
     )}
   </List>
-
 </StyledDrawer></div>
-  )
+    )
+  }  
 }
-
 export default DrawerRight
