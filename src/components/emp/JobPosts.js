@@ -141,30 +141,30 @@ const skills=[
 ]
 
 const JobPosts = () => {
-  const [postsData, setPostsData] = useState([]);
+  const [postData, setPostData] = useState([]);
   const [searchData, setSearchData] = useState([]);
   const [idData, setIdData] = useState("");
   const[ filterValue, setFilterValue]= useState("")
   const [anchorEl, setAnchorEl] = useState(null);
+  const [count, setCount] = useState(0)
   useEffect(()=>{
     getAPIData().then(json=>{
-      setPostsData(json)
+      setPostData(json)
       return json
   }).then(json=>{
     setSearchData(json)
   })
 },[])
-console.log(postsData)
 const handleSearch = (e)=>{
   if(e.target.value == ''){
-    setPostsData(searchData)
+    setPostData(searchData)
   }
   else{
     const filterResult = searchData.filter(item => item.name.toLowerCase().includes(e.target.value))
-    setPostsData(filterResult)
+    setPostData(filterResult)
   }
   setFilterValue(e.target.value)
-}
+} 
   const handlePopover = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -173,15 +173,20 @@ const handleSearch = (e)=>{
   const handleClosePopover = () => {
     setAnchorEl(null);
   };
-  
   const handleId =(id)=>{
     setIdData(id)
   }
-  
   const open = Boolean(anchorEl);
-return (
-  
-    <div>
+  if (count == 0){
+    setCount(count + 1)
+    return(
+      <>
+      </>
+    )
+  }
+  else{
+    return(
+      <div>
     <ThemeProvider theme = {theme}>
       <StyledSearchList disablePadding>
         <ListItem >
@@ -208,7 +213,7 @@ return (
         </ListItem>
       </StyledSearchList>
         <StyledList  >
-          {postsData.map((user)=>(
+          {postData.map((user)=>(
             <ListItem key = {user.id} >
               <ListItemButton alignItems="flex-start" onClick={()=>handleId(`${user.id}`) } >
                 <ListItemAvatar >
@@ -288,9 +293,11 @@ return (
             ))}   
         </StyledList>
         </ThemeProvider>
-        <DrawerRight drawerData ={postsData} idData = {idData}/> 
+        <DrawerRight drawerData ={postData} idData = {idData}/> 
     </div>
-  )
+
+    )
+  }
 }
 
 export default JobPosts
