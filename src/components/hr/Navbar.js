@@ -1,45 +1,111 @@
 import React from 'react'
-import { Box, } from '@mui/system'
-import { AppBar,  createTheme,  ThemeProvider,  Typography, Stack } from '@mui/material'
-import { Drawericon } from './Drawer';
-import SearchBar from './SearchBar';
-const theme = createTheme();
+import { useState } from 'react';
+import { styled } from '@mui/material/styles';
+import MenuIcon from '@mui/icons-material/Menu';
+import {List, ListItem, ListItemAvatar, ListItemText,Drawer,Typography , IconButton,Toolbar,AppBar,Box,Avatar  } from '@mui/material';
+import DrawerList from "./DrawerList";
+import Joblist from './Joblist';
 
-theme.typography.h4={
-  fontSize: '2rem',
-  [theme.breakpoints.down('md')]: {
-    fontSize: '1.5rem',
-  },
-}
+
+const drawerWidth = 250;
+const StyledIconButton = styled(IconButton)(({theme})=>({
+    "&.MuiIconButton-root":{
+        size: "large",
+        edge:"start",
+        color:"black",
+        margin: theme.spacing(0,2,0,1),
+        [theme.breakpoints.up('sm')]:{
+            display: "none"
+
+        }
+
+    }
+}))
+const StyledDrawer = styled(Drawer)(({theme})=>({
+    '& .MuiDrawer-root':{
+      width: drawerWidth,
+      flexShrink: 0,
+      [theme.breakpoints.down("sm")]:{
+        width : drawerWidth - 40,
+      }
+    },
+    '& .MuiDrawer-paper': {
+      width: drawerWidth,
+      boxSizing: 'border-box',
+      [theme.breakpoints.down("sm")]:{
+        width : drawerWidth - 50,
+      }
+    },
+  
+  }))
+  const DrawerHeader =(
+    <>
+    <List disablePadding sx={{
+        bgcolor:"#0A1929",
+        height: {xs: "57px", sm: "64px" }
+    }} >
+        <ListItem>
+            <ListItemAvatar>
+                <Avatar/>
+            </ListItemAvatar>
+            <ListItemText primary="Hello" sx={{color: "white",}} ></ListItemText>
+        </ListItem>
+    </List>
+    </>
+  )
 
 const Navbar = () => {
+    const [open , setOpen ] = useState(false);
+    const handleDrawer = ()=>{
+        setOpen(!open);
+    }
   return (
-    <AppBar position="sticky"
-      sx={{
-      background: "white", 
-      
-    }}>
-      <Box sx={{
-        display: 'flex',
-        padding: "1rem 2rem 1rem 2rem",
-        boxShadow: "2px 2px 2px 1px rgba(0, 0, 0, 0.4)",
-        height: '70px'
-      }
-      }>
-        <Stack direction="row" gap={1} flexGrow={1} alignItems="center" >
-        <Drawericon/>
-        <ThemeProvider theme={theme}>
-        <Typography variant='h4' color="black" fontWeight={80}
-        sx={{ flexGrow: 1, }}>
-        List of available jobs
-        </Typography> 
-        </ThemeProvider>  
-        <SearchBar/>
-           </Stack>
-           
-      </Box>
-    </AppBar>
-  )
+    <Box sx={{ flexGrow: 1, }}>
+      <AppBar position= "sticky"  sx={{bgcolor: "white",width: { sm: `calc(100% - ${drawerWidth}px)` },
+          ml: { sm: `${drawerWidth}px` }}}>
+        <Toolbar>
+          <StyledIconButton disableTouchRipple
+            aria-label="open drawer"
+            onClick={handleDrawer}
+          >
+            <MenuIcon />
+          </StyledIconButton>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: {  sm: 'block' }, fontWeight: 600 }}
+            color="black"
+          >
+            Jobs for you
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <StyledDrawer
+        BackdropProps={{ invisible: true }}
+        variant= "temporary"
+        onClose={()=>setOpen(false)}
+        anchor="left"
+        open={open}
+        sx={{display: { xs: 'block', sm: 'none' }}}
+        >
+            {DrawerHeader}
+            <DrawerList/>
+        </StyledDrawer>
+        <StyledDrawer
+         BackdropProps={{ invisible: true }}
+         variant= "permanent"
+         sx={{
+            display: { xs: 'none', sm: 'block' }
+         }}
+         open
+        >
+            {DrawerHeader}
+            <DrawerList/>
+        </StyledDrawer>
+        <Joblist/>
+    </Box>
+  );
 }
-
 export default Navbar
+

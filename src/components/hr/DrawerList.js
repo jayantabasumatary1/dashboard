@@ -3,17 +3,18 @@ import HomeIcon from '@mui/icons-material/Home';
 import SettingsIcon from '@mui/icons-material/Settings';
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
 import LogoutIcon from '@mui/icons-material/Logout';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import ButtonTheme from './ButtonTheme';
-import { styled, Divider,Stack ,List,ListItemText, ListItemButton, ListItemIcon, IconButton, ListSubheader, Typography, Box } from '@mui/material'; 
+import { Divider, List,ListItemButton, ListItemIcon, ListItemText, ThemeProvider } from '@mui/material';
+import styled from 'styled-components';
+import {Switch} from '@mui/material';
+import {Box} from '@mui/material';
+import { useState } from 'react';
+import {createTheme} from '@mui/material';
 const iconData = [
-    {icon: <HomeIcon/>, label: "Home"},
-    {icon: <DashboardCustomizeIcon/>, label: "Dashboard"},
-    {icon: <SettingsIcon/>, label:"Settings" },
-    {icon: <LogoutIcon/>, label: "Log Out" },
+    {icon: <HomeIcon/>, label: "Home", index: 0},
+    {icon: <DashboardCustomizeIcon/>, label: "Dashboard", index: 1},
+    {icon: <SettingsIcon/>, label:"Settings", index:2 },
+    {icon: <LogoutIcon/>, label: "Log Out", index: 3 },
 ];
-
-
 const FireNav = styled(List)({
     '& .MuiListItemButton-root': {
       paddingLeft: 24,
@@ -34,43 +35,32 @@ const FireNav = styled(List)({
     },
   });
 
-
+  const theme = createTheme({
+    components: {
+      MuiListItemButton:{
+        defaultProps:{
+          disableTouchRipple : true,
+        },  
+      }
+    },
+  });
 const DrawerList = () => {
+  const [selectedIndex, setSelectedIndex]=useState(0);
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  };
   return (
-    <Box>
-        <ListSubheader sx={{
-            bgcolor: "#0A1929",
-            display: "flex",
-            padding: "0.78rem 0 0.78rem 0.78rem",
-            mb: 1,
-            boxShadow:  "2px 2px 2px 1px rgba(0, 0, 0, 0.4)"
-        }} >
-            <Stack direction= "row" alignItems = "center" gap={1} flexGrow={1} >
-            <IconButton sx={{
-              color: "white"
-            }}>
-              <AccountCircleIcon fontSize='large' />
-            </IconButton>
-            <Typography variant='h6' color="white">Hello,</Typography>
-            </Stack>               
-  {/* 
-  <Tooltip title="close Menu" arrow><IconButton
-              sx={{
-              mr: 1,
-              color: "white"
-            }}>
-            <CloseIcon  fontSize='small'/>
-            </IconButton>
-            </Tooltip>  
-  */}       
-        </ListSubheader>
-        <FireNav disablePadding sx={{ width: 300}} > 
+    <ThemeProvider theme = {theme}> 
+       
+         <FireNav disablePadding sx={{ width:{xs: 200, sm: 250 } }} > 
         {
         iconData.map((item)=>(
             <ListItemButton
                 key = {item.label}
-                sx={{ py: 1.5, minHeight: 32,}}>
-                    <ListItemIcon sx={{ color: 'black' }}>
+                selected={selectedIndex === `${item.index}`}
+                onClick={(event) => handleListItemClick(event, `${item.index}`)}
+                sx={{ py: 1.5, minHeight: 32}}>
+                    <ListItemIcon>
                       {item.icon}
                     </ListItemIcon>
                     <ListItemText
@@ -80,14 +70,17 @@ const DrawerList = () => {
                   </ListItemButton>
         ))}
         <ListItemText primary="Preferences" sx={{
-          paddingLeft: 4
+          paddingLeft: 3
         }}>
         </ListItemText>
-        <Divider/>
-        <ButtonTheme/>
+        <Divider />
+        <Box sx={{paddingLeft: 2 }}  >
+        <Switch/>
+        </Box>
       </FireNav>
-      </Box>
+      
+      </ThemeProvider>
   )
 }
 
-export default DrawerList;
+export default DrawerList

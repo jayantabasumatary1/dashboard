@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./index.css";
 import Home from "./routes/Home";
 import Hr from "./routes/Hr";
-import Employee from "./components/emp/Employee";
+import Emp from "./routes/Emp";
 
 
 function App() {
@@ -10,8 +10,8 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/about' element={<Employee/>} />
-        <Route path='/contact' element={<Hr />} />
+        <Route path='/Employee' element={<Emp/>} />
+        <Route path='/Recruiter' element={<Hr />} />
       </Routes>
     </>
   );

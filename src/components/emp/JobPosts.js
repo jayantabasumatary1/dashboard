@@ -141,52 +141,46 @@ const skills=[
 ]
 
 const JobPosts = () => {
-  const [postData, setPostData] = useState([]);
+  const [postsData, setPostsData] = useState([]);
   const [searchData, setSearchData] = useState([]);
   const [idData, setIdData] = useState("");
   const[ filterValue, setFilterValue]= useState("")
   const [anchorEl, setAnchorEl] = useState(null);
-  const [count, setCount] = useState(0)
   useEffect(()=>{
     getAPIData().then(json=>{
-      setPostData(json)
+      setPostsData(json)
       return json
   }).then(json=>{
     setSearchData(json)
   })
 },[])
+console.log(postsData)
 const handleSearch = (e)=>{
   if(e.target.value == ''){
-    setPostData(searchData)
+    setPostsData(searchData)
   }
   else{
     const filterResult = searchData.filter(item => item.name.toLowerCase().includes(e.target.value))
-    setPostData(filterResult)
+    setPostsData(filterResult)
   }
   setFilterValue(e.target.value)
-} 
+}
   const handlePopover = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  
 
   const handleClosePopover = () => {
     setAnchorEl(null);
   };
+  
   const handleId =(id)=>{
     setIdData(id)
   }
+  
   const open = Boolean(anchorEl);
-  if (count == 0){
-    setCount(count + 1)
-    return(
-      <>
-      </>
-    )
-  }
-  else{
-    return(
-      <div>
+return (
+  
+    <div>
     <ThemeProvider theme = {theme}>
       <StyledSearchList disablePadding>
         <ListItem >
@@ -213,7 +207,7 @@ const handleSearch = (e)=>{
         </ListItem>
       </StyledSearchList>
         <StyledList  >
-          {postData.map((user)=>(
+          {postsData.map((user)=>(
             <ListItem key = {user.id} >
               <ListItemButton alignItems="flex-start" onClick={()=>handleId(`${user.id}`) } >
                 <ListItemAvatar >
@@ -293,11 +287,9 @@ const handleSearch = (e)=>{
             ))}   
         </StyledList>
         </ThemeProvider>
-        <DrawerRight drawerData ={postData} idData = {idData}/> 
+        <DrawerRight drawerData ={postsData} idData = {idData}/> 
     </div>
-
-    )
-  }
+  )
 }
 
 export default JobPosts
