@@ -1,11 +1,12 @@
+
 import React from 'react'
-import Employee from '../components/emp/Employee'
-const Emp = () => {
+import { Appbar } from '../components/emp/AppBar'
+import JobPosts from '../components/emp/JobPosts'
+ export const Emp = () => {
   return (
     <div>
-        <Employee/>
+        <Appbar/>
+        <JobPosts/>
     </div>
   )
 }
-
-export default Emp

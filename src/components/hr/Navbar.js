@@ -4,7 +4,6 @@ import { styled } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import {List, ListItem, ListItemAvatar, ListItemText,Drawer,Typography , IconButton,Toolbar,AppBar,Box,Avatar  } from '@mui/material';
 import DrawerList from "./DrawerList";
-import Joblist from './Joblist';
 
 
 const drawerWidth = 250;
@@ -103,7 +102,6 @@ const Navbar = () => {
             {DrawerHeader}
             <DrawerList/>
         </StyledDrawer>
-        <Joblist/>
     </Box>
   );
 }

@@ -44,17 +44,18 @@ const StyledDrawer = styled(Drawer)(({theme})=>({
         bgcolor:"#0A1929",
         height: {xs: "57px", sm: "64px" }
     }} >
-        <ListItem>
+        <ListItem  >
             <ListItemAvatar>
                 <Avatar/>
             </ListItemAvatar>
-            <ListItemText primary="Hello" sx={{color: "white",}} ></ListItemText>
+            <ListItemText primary="Hello" sx={{color: "white",}} 
+            primaryTypographyProps={{ fontSize: 20, fontWeight: 'medium' }} ></ListItemText>
         </ListItem>
     </List>
     </>
   )
 
-const Appbar = () => {
+export const Appbar = () => {
     const [open , setOpen ] = useState(false);
     const handleDrawer = ()=>{
         setOpen(!open);
@@ -103,9 +104,7 @@ const Appbar = () => {
             {DrawerHeader}
             <DrawerItems/>
         </StyledDrawer>
-        <JobPosts/>
     </Box>
   );
 }
-export default Appbar
 

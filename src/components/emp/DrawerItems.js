@@ -1,14 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import HomeIcon from '@mui/icons-material/Home';
 import SettingsIcon from '@mui/icons-material/Settings';
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { Divider, List,ListItemButton, ListItemIcon, ListItemText, ThemeProvider } from '@mui/material';
+import { CssBaseline, Divider, List,ListItemButton, ListItemIcon, ListItemText, ThemeProvider } from '@mui/material';
 import styled from 'styled-components';
-import {Switch} from '@mui/material';
-import {Box} from '@mui/material';
 import { useState } from 'react';
 import {createTheme} from '@mui/material';
+import ModeSwitch from './ModeSwitch';
 const iconData = [
     {icon: <HomeIcon/>, label: "Home", index: 0},
     {icon: <DashboardCustomizeIcon/>, label: "Dashboard", index: 1},
@@ -35,6 +34,8 @@ const FireNav = styled(List)({
     },
   });
 
+  
+
   const theme = createTheme({
     components: {
       MuiListItemButton:{
@@ -51,7 +52,7 @@ const DrawerItems = () => {
   };
   return (
     <ThemeProvider theme = {theme}> 
-       
+       <CssBaseline/>
          <FireNav disablePadding sx={{ width:{xs: 200, sm: 250 } }} > 
         {
         iconData.map((item)=>(
@@ -65,7 +66,7 @@ const DrawerItems = () => {
                     </ListItemIcon>
                     <ListItemText
                       primary={item.label}
-                      primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium' }}
+                      primaryTypographyProps={{ fontSize: 16, fontWeight: 'medium' }}
                     />
                   </ListItemButton>
         ))}
@@ -74,9 +75,8 @@ const DrawerItems = () => {
         }}>
         </ListItemText>
         <Divider />
-        <Box sx={{paddingLeft: 2 }}  >
-        <Switch/>
-        </Box>
+        <ModeSwitch/>
+        
       </FireNav>
       
       </ThemeProvider>

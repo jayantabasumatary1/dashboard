@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import "./index.css";
 import Home from "./routes/Home";
-import Hr from "./routes/Hr";
-import Emp from "./routes/Emp";
+import {Hr} from "./routes/Hr";
+import {Emp} from "./routes/Emp";
 
 
 function App() {

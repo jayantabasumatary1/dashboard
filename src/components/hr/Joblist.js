@@ -1,7 +1,7 @@
 import { Avatar,  createTheme, IconButton, List,ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemText, Popover, styled, ThemeProvider, Typography, InputBase } from '@mui/material'
 import { Box } from '@mui/material'
 import React from 'react'
-import { getAPIdata } from './AxiosPost'
+import { getAPIdata } from '../../services/AxiosPost'
 import image1 from "../../images/React.png"
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchIcon from '@mui/icons-material/Search';

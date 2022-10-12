@@ -1,7 +1,7 @@
 import { Avatar,  createTheme, IconButton, List,ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemText, Popover, styled, ThemeProvider, Typography, InputBase } from '@mui/material'
 import { Box } from '@mui/material'
 import React from 'react'
-import { getAPIData } from './Axios'
+import { getAPIData } from '../../services/Axios'
 import image1 from "../../images/React.png"
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchIcon from '@mui/icons-material/Search';
@@ -214,7 +214,7 @@ return (
                   <Avatar src= {image1} style={{ borderRadius: 8 }} />
                 </ListItemAvatar>
                 <Box sx={{ flexGrow: 1}}>
-                <ListItemText primary={user.name}
+                <ListItemText primary={user.title}
                  secondary={
             <React.Fragment>
               <Typography
@@ -222,26 +222,24 @@ return (
                 component="span"
                 variant="body2"              
               >
-                {user.phone}
+                {user.userId}
               </Typography><br/>
-              { Object.keys(user.company).map((key, i)=>( 
+          { /*
+          { Object.keys(user.company).map((key, i)=>( 
                 <Typography variant='caption text' key ={i}>
                   { user.company[key] }
                 </Typography>
               )) }
-              {" — I'll be in your neighborhood doing errands this…"}<br></br>
+          
+          */}    
+              {" — We are looking for a "} {user.title }{' who...'}<br></br>
               <Typography variant='caption text' >
                 <FiberManualRecordIcon style={{ fontSize: 10, marginRight: 4  }}/>
                 posted on
                 <FiberManualRecordIcon style={{ fontSize: 10, margin: "0 4 0 4" }}/>
-                full time
+                {user.userId }
               </Typography>
               <Box>
-                {skills.map((skil)=>(
-                  <StyledDiv key={skil} >
-                  <Typography variant='OVERLINE TEXT'color="black" > {skil.skill}</Typography>
-                </StyledDiv>
-                ))}
               </Box>
             </React.Fragment> }>
                 </ListItemText>
@@ -287,7 +285,7 @@ return (
             ))}   
         </StyledList>
         </ThemeProvider>
-        <DrawerRight drawerData ={postsData} idData = {idData}/> 
+        <DrawerRight idData = {idData}/> 
     </div>
   )
 }

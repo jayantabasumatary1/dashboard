@@ -1,9 +1,10 @@
 import React from 'react'
-import { Avatar, Drawer,List, ListItem, ListItemAvatar,ListItemText, styled, Typography, Box, Grow } from '@mui/material'
+import { Avatar, Drawer,List, ListItem, ListItemAvatar,ListItemText, styled, Typography, Box, Grow, Button } from '@mui/material'
 import GoogleIcon from '@mui/icons-material/Google';
 import {Divider} from '@mui/material';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import images from '../../images/images.jpg'
+import { useState } from 'react';
 export const drawerWidthRight = 400
 const StyledDrawer = styled(Drawer)(({theme})=>({
   '& .MuiDrawer-root':{
@@ -54,6 +55,8 @@ const StyledList = styled(List) (({theme})=> ({
   );
 
 const DrawerRight = ({drawerData, idData}) => {
+  const [buttonText, setButtonText] = useState("Apply");
+  const [disable, setDisable] = useState(false);
   if (idData == ""){
     return(
       <div>
@@ -150,6 +153,9 @@ const DrawerRight = ({drawerData, idData}) => {
                 </ListItem>
                 
             </StyledList>
+            <Box  sx={{display: "flex",  justifyContent: "center" }}>
+            <Button variant='contained' size='small' type='submit' onClick={()=>{setButtonText("Applied"); setDisable(true)  } } disabled = {disable}  >  {buttonText}</Button>
+            </Box>
             </>
             )
         }
